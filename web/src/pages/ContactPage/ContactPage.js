@@ -6,10 +6,21 @@ import {
   TextAreaField,
   TextField,
 } from '@redwoodjs/forms'
-import { MetaTags } from '@redwoodjs/web'
+import { MetaTags, useMutation } from '@redwoodjs/web'
+
+const CREATE_CONTACT = gql`
+  mutation CreateContactMutation($input: CreateContactInput!) {
+    createContact(input: $input) {
+      id
+    }
+  }
+`
 
 const ContactPage = () => {
+  const [create] = useMutation(CREATE_CONTACT)
+
   function onSubmit(data) {
+    create({ variables: { input: data } })
     console.log(data)
   }
 
