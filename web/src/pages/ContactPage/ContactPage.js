@@ -1,6 +1,7 @@
 import {
   FieldError,
   Form,
+  FormError,
   Label,
   Submit,
   TextAreaField,
@@ -34,7 +35,8 @@ const ContactPage = () => {
 
       <Toaster />
       <h2>ContactPage</h2>
-      <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }}>
+      <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }} error={error}>
+        <FormError error={error} wrapperClassName="form-error" />
         <Label name="firstName" errorClassName="error">
           First Name
         </Label>
@@ -62,10 +64,10 @@ const ContactPage = () => {
           name="email"
           validation={{
             required: true,
-            pattern: {
-              value: /^[^@]+@[^.]+\..+$/,
-              message: 'Please enter a valid email address.',
-            },
+            // pattern: {
+            //   value: /^[^@]+@[^.]+\..+$/,
+            //   message: 'Please enter a valid email address.',
+            // },
           }}
           errorClassName="error"
         />
