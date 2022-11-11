@@ -119,3 +119,28 @@ The best way to learn Redwood is by going through the comprehensive [tutorial](h
 
 - Stay updated: read [Forum announcements](https://community.redwoodjs.com/c/announcements/5), follow us on [Twitter](https://twitter.com/redwoodjs), and subscribe to the [newsletter](https://redwoodjs.com/newsletter)
 - [Learn how to contribute](https://redwoodjs.com/docs/contributing)
+
+## Notes from Building
+
+### DB/Models
+``` js
+model User {
+  id                  Int       @id @default(autoincrement())
+  name                String?
+  email               String    @unique
+```
+- `?` makes field optional
+
+
+`yarn rw prisma migrate dev`
+-run all database migrations to add/update tables
+
+### Generators
+
+`yarn rw setup auth dbAuth`
+- adds the internals of dbAuth to app
+- override the existing file /api/src/lib/auth.js
+- do not "Enable WebAuthn support"
+
+### Forms
+- checkout [react-hook-form](https://react-hook-form.com/api/useform) to see addtional options that can be used with `useForm()`
