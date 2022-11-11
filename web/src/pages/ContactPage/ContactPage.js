@@ -6,6 +6,7 @@ import {
   Submit,
   TextAreaField,
   TextField,
+  useForm,
 } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/dist/toast'
@@ -22,8 +23,11 @@ const ContactPage = () => {
   const [create, { loading, error }] = useMutation(CREATE_CONTACT, {
     onCompleted: () => {
       toast.success('🥳 Contact Successfully Submitted! 🥳')
+      formMethods.reset()
     },
   })
+
+  const formMethods = useForm()
 
   function onSubmit(data) {
     create({ variables: { input: data } })
@@ -35,7 +39,12 @@ const ContactPage = () => {
 
       <Toaster />
       <h2>ContactPage</h2>
-      <Form onSubmit={onSubmit} config={{ mode: 'onBlur' }} error={error}>
+      <Form
+        config={{ mode: 'onBlur' }}
+        error={error}
+        formMethods={formMethods}
+        onSubmit={onSubmit}
+      >
         <FormError error={error} wrapperClassName="form-error" />
         <Label name="firstName" errorClassName="error">
           First Name
@@ -64,10 +73,10 @@ const ContactPage = () => {
           name="email"
           validation={{
             required: true,
-            // pattern: {
-            //   value: /^[^@]+@[^.]+\..+$/,
-            //   message: 'Please enter a valid email address.',
-            // },
+            pattern: {
+              value: /^[^@]+@[^.]+\..+$/,
+              message: 'Please enter a valid email address.',
+            },
           }}
           errorClassName="error"
         />
