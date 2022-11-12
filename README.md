@@ -122,6 +122,21 @@ The best way to learn Redwood is by going through the comprehensive [tutorial](h
 
 ## Notes from Building
 
+### RedwoodJS Command Line
+Abreviations
+- rw = redwood
+- g = generate
+
+`yarn rw dev`
+- starts server
+
+`yarn rw prisma studio`
+- starts prisma studio where you can view all prisma models and create records
+
+`yarn rw dev api`
+- starts redwood graphql sandbox
+- also accessed at `http://localhost:8911/graphql`
+
 ### DB/Models
 ``` js
 model User {
@@ -133,9 +148,12 @@ model User {
 
 
 `yarn rw prisma migrate dev`
--run all database migrations to add/update tables
+- run all database migrations to add/update tables
 
 ### Generators
+
+`yarn rw g dbAuth`
+- adds Login, SignUp, and Forgot Password pages
 
 `yarn rw setup auth dbAuth`
 - adds the internals of dbAuth to app
