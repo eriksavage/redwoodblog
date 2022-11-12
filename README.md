@@ -140,7 +140,21 @@ Abreviations
 `yarn rw g secret`
 - generates new value for `SESSION_SECRET` env variable
 
-### DB/Models
+
+### Database
+- RedwoodJS comes installed with SQLite, but Prisma can only handle one database provider at a time (Prisma currently supports SQLite, Postgres, MySQL and SQL Server.)
+
+Updating to postgresql@14:
+- Command:
+  - `brew services start postgresql@14` starts postgres
+  - `brew services restart postgresql@14` stops then starts postgres (can fix weird errors)
+  - `psql`
+    - `\q` quit
+    - `\l` list databases
+    - `\?` get a list of commands
+
+
+### Models
 ``` js
 model User {
   id                  Int       @id @default(autoincrement())
@@ -148,6 +162,7 @@ model User {
   email               String    @unique
 ```
 - `?` makes field optional
+
 
 
 `yarn rw prisma migrate dev`
