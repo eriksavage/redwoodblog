@@ -140,6 +140,8 @@ Abreviations
 `yarn rw g secret`
 - generates new value for `SESSION_SECRET` env variable
 
+`yarn rw setup deploy netlify`
+- adds a netlify.toml config file in the root of the project
 
 ### Database
 - RedwoodJS comes installed with SQLite, but Prisma can only handle one database provider at a time (Prisma currently supports SQLite, Postgres, MySQL and SQL Server.)
