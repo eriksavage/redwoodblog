@@ -137,6 +137,9 @@ Abreviations
 - starts redwood graphql sandbox
 - also accessed at `http://localhost:8911/graphql`
 
+`yarn rw g secret`
+- generates new value for `SESSION_SECRET` env variable
+
 ### DB/Models
 ``` js
 model User {
