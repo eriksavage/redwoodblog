@@ -119,3 +119,66 @@ The best way to learn Redwood is by going through the comprehensive [tutorial](h
 
 - Stay updated: read [Forum announcements](https://community.redwoodjs.com/c/announcements/5), follow us on [Twitter](https://twitter.com/redwoodjs), and subscribe to the [newsletter](https://redwoodjs.com/newsletter)
 - [Learn how to contribute](https://redwoodjs.com/docs/contributing)
+
+## Notes from Building
+
+### RedwoodJS Command Line
+Abreviations
+- rw = redwood
+- g = generate
+
+`yarn rw dev`
+- starts server
+
+`yarn rw prisma studio`
+- starts prisma studio where you can view all prisma models and create records
+
+`yarn rw dev api`
+- starts redwood graphql sandbox
+- also accessed at `http://localhost:8911/graphql`
+
+`yarn rw g secret`
+- generates new value for `SESSION_SECRET` env variable
+
+`yarn rw setup deploy netlify`
+- adds a netlify.toml config file in the root of the project
+
+### Database
+- RedwoodJS comes installed with SQLite, but Prisma can only handle one database provider at a time (Prisma currently supports SQLite, Postgres, MySQL and SQL Server.)
+
+Updating to postgresql@14:
+- Command:
+  - `brew services start postgresql@14` starts postgres
+  - `brew services restart postgresql@14` stops then starts postgres (can fix weird errors)
+  - `psql`
+    - `\q` quit
+    - `\l` list databases
+    - `\?` get a list of commands
+
+
+### Models
+``` js
+model User {
+  id                  Int       @id @default(autoincrement())
+  name                String?
+  email               String    @unique
+```
+- `?` makes field optional
+
+
+
+`yarn rw prisma migrate dev`
+- run all database migrations to add/update tables
+
+### Generators
+
+`yarn rw g dbAuth`
+- adds Login, SignUp, and Forgot Password pages
+
+`yarn rw setup auth dbAuth`
+- adds the internals of dbAuth to app
+- override the existing file /api/src/lib/auth.js
+- do not "Enable WebAuthn support"
+
+### Forms
+- checkout [react-hook-form](https://react-hook-form.com/api/useform) to see addtional options that can be used with `useForm()`
